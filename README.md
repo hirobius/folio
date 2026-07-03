@@ -39,18 +39,20 @@ array (title, blurb, kind, year, href, optional `cover` image in `/public`).
 
 ### Tuning the möbius
 
-The scene is a lean R3F component — a real möbius strip baked into a
-`BufferGeometry` (no runtime shader, transmission pass, or post-processing).
-The constants at the top of `components/mobius/MobiusScene.tsx` are the knobs:
+The centerpiece is a twisted, fluted triangular tube baked into a `BufferGeometry`,
+shaded as frosted transmission glass (a `MeshPhysicalMaterial`) with a small "roll"
+vertex shader that animates the twist in place. All of its shape / motion / material
+values live in a **`MobiusConfig`** (`components/mobius/mobiusConfig.ts`) —
+`DEFAULT_MOBIUS_CONFIG` is what ships.
 
-- `LOOP_RADIUS` / `BAND_WIDTH` — proportions of the ribbon
-- `U_SEGMENTS` / `V_SEGMENTS` — tessellation (raise for smoother, lower for lighter)
-- `BASE_TILT_X` — the resting 3/4 view angle
-- `roll` (in `useFrame`) — spin speed; `0.16`/`0.3` factors — cursor tilt response
+Tune it live in the browser: append **`?tune`** to the URL for a dev panel with a
+tab per control group (Geometry · Motion · Glass · Color · Inner · Lite), each with
+a "copy json" button. Paste the copied values back into `DEFAULT_MOBIUS_CONFIG` to
+lock them in. (The panel is dev-only — see `TODO.md` for removing it before launch.)
 
 Color comes from the `--mobius-color` CSS var (flips with the theme; edit those
-vars in `app/globals.css`). The möbius auto-fits and anchors to the hero band
-via `[data-mobius-anchor="hero"]`.
+vars in `app/globals.css`). The möbius auto-fits and anchors to the hero band via
+`[data-mobius-anchor="hero"]`. Architecture notes live in `CONTEXT.md`.
 
 ### Device tiers
 

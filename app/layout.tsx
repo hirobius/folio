@@ -16,10 +16,25 @@ const satoshi = localFont({
   display: 'swap',
 });
 
+const description =
+  'Adrian Milsap — Design Systems Engineer. I build the design systems teams ship on: DTCG tokens, accessibility enforced in CI, and libraries built for AI agents to extend safely.';
+
 export const metadata: Metadata = {
   title: `${site.name} — ${site.role}`,
-  description:
-    'Design systems and AI interfaces, built end to end. The portfolio of Adrian Milsap, design engineer.',
+  description,
+  // Text-only social tags (no metadataBase needed). The share image + canonical
+  // URL land with the production domain — see TODO.md / the "social share" issue.
+  openGraph: {
+    title: `${site.name} — ${site.role}`,
+    description,
+    type: 'website',
+    siteName: site.name,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${site.name} — ${site.role}`,
+    description,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
