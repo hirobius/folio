@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { site } from '@/lib/content';
+import { siteUrl } from '@/lib/site';
 import './globals.css';
 
 // Satoshi, self-hosted (Fontshare kit). One variable woff2 covers weights
@@ -20,15 +21,18 @@ const description =
   'Adrian Milsap — Design Systems Engineer. I build the design systems teams ship on: DTCG tokens, accessibility enforced in CI, and libraries built for AI agents to extend safely.';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: `${site.name} — ${site.role}`,
   description,
-  // Text-only social tags (no metadataBase needed). The share image + canonical
-  // URL land with the production domain — see TODO.md / the "social share" issue.
+  alternates: { canonical: '/' },
+  // The OG/Twitter image is picked up automatically from app/opengraph-image.*
+  // once that asset is added (pending the A/B pick — see issue #1).
   openGraph: {
     title: `${site.name} — ${site.role}`,
     description,
     type: 'website',
     siteName: site.name,
+    url: siteUrl,
   },
   twitter: {
     card: 'summary_large_image',
