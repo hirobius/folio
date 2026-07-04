@@ -84,13 +84,13 @@ export function detectMobiusTier(): MobiusTier {
  *
  * Low-power devices (software rasterizers / no WebGL) get a static image — zero
  * three.js, no render loop, no battery cost. Real GPUs get the live möbius. The
- * tuner and explicit tier overrides (?tune / ?lite / ?glass / ?glasslow) always
- * force the live canvas so each path stays testable on any device.
+ * explicit tier overrides (?lite / ?glass / ?glasslow) always force the live canvas
+ * so each path stays testable on any device.
  */
 export function resolveMobiusMode(): 'canvas' | 'static' {
   if (typeof window === 'undefined') return 'canvas';
   const p = new URLSearchParams(window.location.search);
-  if (p.has('tune') || p.has('lite') || p.has('glass') || p.has('glasslow')) return 'canvas';
+  if (p.has('lite') || p.has('glass') || p.has('glasslow')) return 'canvas';
   const tier = detectMobiusTier();
   return tier === 'glass-high' || tier === 'glass-low' ? 'canvas' : 'static';
 }

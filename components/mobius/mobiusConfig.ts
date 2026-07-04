@@ -1,6 +1,6 @@
 /**
- * Tunable parameters for the möbius shape. The dev tuner (MobiusTuner, shown
- * with ?tune in the URL) edits these live; the defaults below are what ships.
+ * Tunable parameters for the möbius shape. Edit `DEFAULT_MOBIUS_CONFIG` below to
+ * change what ships. (These were dialed in via a live `?tune` panel, since removed.)
  */
 export type MobiusConfig = {
   // Overall size — a multiplier on the auto-fit, so the WHOLE shape scales
