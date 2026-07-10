@@ -2,6 +2,13 @@
 
 Guidance for AI agents working in this repository.
 
+## Deploy
+
+Vercel is the sole deploy target. The production URL comes from
+`VERCEL_PROJECT_PRODUCTION_URL`. There is no Netlify or other host — do not
+add `netlify.toml`, `_redirects`, `_headers`, or otherwise assume a second
+deploy pipeline.
+
 ## Ralph quality bar
 
 REPO_TYPE: production
