@@ -87,10 +87,37 @@ export function detectMobiusTier(): MobiusTier {
  * explicit tier overrides (?lite / ?glass / ?glasslow) always force the live canvas
  * so each path stays testable on any device.
  */
+/**
+ * The ?glass / ?glasslow / ?lite override, or null when none is present.
+ *
+ * This is the ONE place the override vocabulary lives. It used to be parsed
+ * twice — here, to decide canvas-vs-static, and again in Mobius.tsx to pick the
+ * tier — so adding a fourth tier meant editing two files that had no reference
+ * to each other, and disagreeing between them would have been silent.
+ */
+export function readTierOverride(): Exclude<MobiusTier, 'none'> | null {
+  if (typeof window === 'undefined') return null;
+  const p = new URLSearchParams(window.location.search);
+  if (p.has('glass')) return 'glass-high';
+  if (p.has('glasslow')) return 'glass-low';
+  if (p.has('lite')) return 'lite';
+  return null;
+}
+
+/**
+ * The render tier: an explicit override if present, otherwise probe the GPU.
+ * Resolved once, synchronously, before the heavy canvas mounts.
+ */
+export function resolveTier(): MobiusTier {
+  if (typeof window === 'undefined') return 'glass-high';
+  return readTierOverride() ?? detectMobiusTier();
+}
+
 export function resolveMobiusMode(): 'canvas' | 'static' {
   if (typeof window === 'undefined') return 'canvas';
-  const p = new URLSearchParams(window.location.search);
-  if (p.has('lite') || p.has('glass') || p.has('glasslow')) return 'canvas';
+  // Any explicit override forces the live canvas, so each path stays testable
+  // on any device.
+  if (readTierOverride() !== null) return 'canvas';
   const tier = detectMobiusTier();
   return tier === 'glass-high' || tier === 'glass-low' ? 'canvas' : 'static';
 }

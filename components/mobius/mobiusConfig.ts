@@ -36,11 +36,6 @@ export type MobiusConfig = {
   tint: number; // 0 = clear/colorless glass, 1 = strongly colored
   glassOpacity: number; // 1 = solid, lower = see the inner core through the frosted shell
 
-  // Color
-  useCustomColor: boolean;
-  hue: number;
-  saturation: number;
-  lightness: number;
 
   // Lite fallback (transmission-free fresnel; used on software rasterizers). These
   // shape the cheap material's view-angle gradient — see useMobiusMaterialLite.
@@ -89,10 +84,6 @@ export const DEFAULT_MOBIUS_CONFIG: MobiusConfig = {
   tint: 1,
   glassOpacity: 1,
 
-  useCustomColor: false,
-  hue: 246,
-  saturation: 0.42,
-  lightness: 0.72,
 
   liteBody: 0.92,
   liteEdge: 0.34,
