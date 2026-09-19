@@ -16,19 +16,7 @@ import { Canvas } from '@react-three/fiber';
 import { MobiusScene } from './MobiusScene';
 import { MOBIUS_BASE_COLOR } from './tokens';
 import { DEFAULT_MOBIUS_CONFIG, type MobiusConfig } from './mobiusConfig';
-import { detectMobiusTier, qualityForTier, type MobiusTier } from './capability';
-
-// Resolve the render tier once, synchronously, on the client's first render —
-// before the heavy canvas mounts. ?glass / ?glasslow / ?lite force a tier (for
-// testing each path on a given device); otherwise probe the GPU. See detectMobiusTier.
-function resolveTier(): MobiusTier {
-  if (typeof window === 'undefined') return 'glass-high';
-  const params = new URLSearchParams(window.location.search);
-  if (params.has('glass')) return 'glass-high';
-  if (params.has('glasslow')) return 'glass-low';
-  if (params.has('lite')) return 'lite';
-  return detectMobiusTier();
-}
+import { qualityForTier, resolveTier, type MobiusTier } from './capability';
 
 function readCssVar(name: string): string {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -105,10 +93,6 @@ export function Mobius({ config = DEFAULT_MOBIUS_CONFIG }: { config?: MobiusConf
     };
   }, [tier]);
 
-  // The tuner can override the theme color with a custom HSL value.
-  const effectiveColor = config.useCustomColor
-    ? `hsl(${config.hue}, ${Math.round(config.saturation * 100)}%, ${Math.round(config.lightness * 100)}%)`
-    : color;
 
   // No functional WebGL — skip the canvas entirely (the möbius is decorative).
   if (tier === 'none') return null;
@@ -138,14 +122,12 @@ export function Mobius({ config = DEFAULT_MOBIUS_CONFIG }: { config?: MobiusConf
     >
       <MobiusScene
         mouseRef={mouseRef}
-        color={effectiveColor}
+        color={color}
         reducedMotion={reducedMotion}
         isLight={isLight}
         active={active}
         config={config}
-        variant={quality.variant}
-        fps={quality.fps}
-        transmissionResolution={quality.transmissionResolution}
+        quality={quality}
       />
     </Canvas>
   );

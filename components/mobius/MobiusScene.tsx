@@ -24,6 +24,7 @@ import { useAnchorFit } from './useAnchorFit';
 import { useMobiusMaterial } from './useMobiusMaterial';
 import { useMobiusMaterialLite } from './useMobiusMaterialLite';
 import type { MobiusConfig } from './mobiusConfig';
+import type { MobiusQuality } from './capability';
 
 type Props = {
   mouseRef: React.MutableRefObject<{ x: number; y: number }>;
@@ -32,15 +33,22 @@ type Props = {
   isLight: boolean;
   active: boolean;
   config: MobiusConfig;
-  // 'glass' = the MeshPhysicalMaterial (transmission + inner core + env IBL), used
-  // on every real GPU; 'lite' = the transmission-free fresnel fallback (no inner
-  // mesh, no env) for software rasterizers. Chosen by device tier (see capability).
-  variant: 'glass' | 'lite';
-  // Demand-loop target frame rate — lower tiers cap it lower (see qualityForTier).
-  fps: number;
-  // The tier's base transmission render-target resolution; the adaptive hook steps
-  // it down from here if the device can't hold `fps` (glass only).
-  transmissionResolution: number;
+  /**
+   * Everything the device tier decides, as the one object `qualityForTier()`
+   * already returns:
+   *   variant                'glass' = MeshPhysicalMaterial (transmission +
+   *                          inner core + env IBL), on every real GPU;
+   *                          'lite' = transmission-free fresnel fallback for
+   *                          software rasterizers
+   *   fps                    demand-loop target frame rate
+   *   transmissionResolution base transmission render-target resolution; the
+   *                          adaptive hook steps down from here (glass only)
+   *
+   * Passed whole rather than as three props: the caller was destructuring
+   * `qualityForTier(tier)` apart only for this component to reassemble it, so
+   * adding a fourth quality field meant touching three places.
+   */
+  quality: MobiusQuality;
 };
 
 // The render loop is capped well below the display refresh (the demand loop's
@@ -162,10 +170,9 @@ export function MobiusScene({
   isLight,
   active,
   config,
-  variant,
-  fps,
-  transmissionResolution,
+  quality,
 }: Props) {
+  const { variant, fps, transmissionResolution } = quality;
   const isGlass = variant === 'glass';
   const groupRef = useRef<THREE.Group>(null);
 
