@@ -22,6 +22,15 @@ export function MobiusFallback() {
   }, []);
 
   if (!show) return null;
-  // eslint-disable-next-line @next/next/no-img-element -- decorative, fixed asset
-  return <img className="hero__mobius-img" src="/mobius-fallback.png" alt="" aria-hidden="true" />;
+  // WebP first, PNG second: this renders on the devices least able to afford
+  // the bytes — no GPU, often a slow link — and the WebP is 36 KB against the
+  // PNG's 321 KB. The <picture> keeps the PNG as the fallback source rather
+  // than replacing it, so a browser without WebP support still gets an image.
+  return (
+    <picture>
+      <source srcSet="/mobius-fallback.webp" type="image/webp" />
+      {/* eslint-disable-next-line @next/next/no-img-element -- decorative, fixed asset */}
+      <img className="hero__mobius-img" src="/mobius-fallback.png" alt="" aria-hidden="true" />
+    </picture>
+  );
 }
