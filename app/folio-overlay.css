@@ -1,0 +1,39 @@
+/*
+ * folio tenant overlay — hirobius/folio#21
+ *
+ * @hirobius/design-system's `variables.css` is imported first (app/layout.tsx);
+ * app/globals.css then aliases folio's own custom properties (--bg, --text, …)
+ * onto HDS *semantic* tokens. This file is the documented exception: colours
+ * HDS has no equivalent for, so they stay as folio's original hex values
+ * instead of being silently hard-coded again in globals.css.
+ *
+ * - Light surface/content colours borrow HDS's warm `stone` primitive family
+ *   (the same family Concrete Creations' tenant overlay uses) — close to
+ *   folio's original cream/near-black, but HDS ships no `stone` step for a
+ *   raised surface between stone-100 and stone-400, so --semantic-color-
+ *   surface-raised keeps its exact pre-HDS hex.
+ * - HDS's `stone` family has no dark-mode (light-on-dark) steps at all, so
+ *   the whole dark palette below keeps its exact pre-HDS hex values.
+ * - --mobius-color (both themes) has no HDS match in any family — it is the
+ *   möbius centerpiece's accent blue and DoD requires it to look unchanged,
+ *   so it keeps its exact pre-HDS hex, referenced live by
+ *   components/mobius/Mobius.tsx via getComputedStyle.
+ */
+
+:root {
+  --semantic-color-surface-page: var(--primitive-color-stone-100); /* was #eee8df */
+  --semantic-color-surface-raised: #e6dfd3; /* no stone step near folio's original raised surface */
+  --semantic-color-content-primary: var(--primitive-color-stone-950); /* was #1a1714 */
+  --semantic-color-content-secondary: var(--primitive-color-stone-700); /* was #6e665a */
+
+  --mobius-color: #3a4fe6; /* no HDS match; centerpiece must look unchanged */
+}
+
+[data-theme='dark'] {
+  --semantic-color-surface-page: #14120f; /* stone has no dark step; kept exact */
+  --semantic-color-surface-raised: #1d1a15; /* ditto */
+  --semantic-color-content-primary: #f1ebe1; /* ditto */
+  --semantic-color-content-secondary: #9b9183; /* ditto */
+
+  --mobius-color: #4f66f5; /* no HDS match; centerpiece must look unchanged */
+}

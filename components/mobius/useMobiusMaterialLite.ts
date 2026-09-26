@@ -5,6 +5,7 @@ import type { MobiusConfig } from './mobiusConfig';
 
 type Args = { config: MobiusConfig; color: string; reducedMotion: boolean };
 
+// Numeric three.js colours — exempt per hirobius/folio#21 (WebGL uniforms, not CSS tokens).
 const WHITE = new THREE.Color('#ffffff');
 
 /**

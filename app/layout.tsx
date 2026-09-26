@@ -3,6 +3,11 @@ import localFont from 'next/font/local';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { site } from '@/lib/content';
 import { siteUrl } from '@/lib/site';
+// HDS design tokens (imported once, here) — app/globals.css aliases folio's
+// own custom properties onto these; app/folio-overlay.css documents the few
+// colours HDS has no equivalent for. See hirobius/folio#21.
+import '@hirobius/design-system/variables.css';
+import './folio-overlay.css';
 import './globals.css';
 
 // Satoshi, self-hosted (Fontshare kit). One variable woff2 covers weights

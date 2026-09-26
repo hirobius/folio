@@ -40,17 +40,22 @@ svg {
 /* ─────────────────────────────────────────────────────────────────────────
    Theme tokens
    ───────────────────────────────────────────────────────────────────────── */
+/* Aliased onto @hirobius/design-system's semantic tokens (imported in
+   app/layout.tsx, ahead of this file). app/folio-overlay.css documents the
+   few colours HDS has no equivalent for — see hirobius/folio#21. */
 :root {
-  --bg: #eee8df;
-  --bg-raised: #e6dfd3;
-  --text: #1a1714;
-  --text-muted: #6e665a;
-  --line: rgba(26, 23, 20, 0.14);
-  --line-strong: rgba(26, 23, 20, 0.28);
+  --bg: var(--semantic-color-surface-page);
+  --bg-raised: var(--semantic-color-surface-raised);
+  --text: var(--semantic-color-content-primary);
+  --text-muted: var(--semantic-color-content-secondary);
+  /* Derived tints of --text, same relationship the old hard-coded rgba()
+     pairs had — now theme-agnostic instead of duplicated per theme. */
+  --line: color-mix(in srgb, var(--text) 14%, transparent);
+  --line-strong: color-mix(in srgb, var(--text) 28%, transparent);
 
-  /* möbius reads these — flips with the theme */
-  --mobius-color: #3a4fe6;
-  --mobius-bg: #eee8df;
+  /* möbius reads these — flips with the theme; --mobius-color has no HDS
+     match and lives in app/folio-overlay.css. */
+  --mobius-bg: var(--bg);
 
   /* Satoshi everywhere — self-hosted via next/font/local (see app/layout). */
   --font-display: var(--font-satoshi), system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -63,15 +68,14 @@ svg {
 }
 
 [data-theme='dark'] {
-  --bg: #14120f;
-  --bg-raised: #1d1a15;
-  --text: #f1ebe1;
-  --text-muted: #9b9183;
-  --line: rgba(241, 235, 225, 0.14);
-  --line-strong: rgba(241, 235, 225, 0.3);
+  --bg: var(--semantic-color-surface-page);
+  --bg-raised: var(--semantic-color-surface-raised);
+  --text: var(--semantic-color-content-primary);
+  --text-muted: var(--semantic-color-content-secondary);
 
-  --mobius-color: #4f66f5;
-  --mobius-bg: #14120f;
+  --mobius-bg: var(--bg);
+  /* Dark theme's border was originally a touch stronger (30% vs 28%) than light's. */
+  --line-strong: color-mix(in srgb, var(--text) 30%, transparent);
 
   color-scheme: dark;
 }
