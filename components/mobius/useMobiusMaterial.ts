@@ -31,6 +31,7 @@ export function useMobiusMaterial({ config, color, isLight, reducedMotion }: Arg
   // Shader uniforms — mutated on config change / each frame; shared with the
   // compiled shaders (roll phase; inner fresnel).
   const phase = useRef({ value: 0 });
+  // Numeric three.js colour — exempt per hirobius/folio#21 (WebGL uniform, not a CSS token).
   const uInnerCenter = useRef({ value: new THREE.Color('#3aa0ff') });
   const uInnerFresnel = useRef({ value: 2.5 });
   const uInnerGlow = useRef({ value: 1 });

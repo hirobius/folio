@@ -1,0 +1,43 @@
+/*
+ * folio tenant overlay — hirobius/folio#21
+ *
+ * @hirobius/design-system's `variables.css` is imported first (app/layout.tsx);
+ * app/globals.css then aliases folio's own custom properties (--bg, --text, …)
+ * onto HDS *semantic* tokens. This file is the documented exception: colours
+ * HDS has no equivalent for, so they stay as folio's original hex values
+ * instead of being silently hard-coded again in globals.css.
+ *
+ * - HDS's `stone` primitive family looked close to folio's warm cream palette
+ *   but its actual values (checked against dist/variables.css) do not match
+ *   folio's original hex — stone-100/950/700 are a visible re-skin, not an
+ *   alias. Issue #21 requires folio's look to stay unchanged, so light-mode
+ *   surface/content colours below keep their exact pre-HDS hex instead.
+ * - HDS's `stone` family has no dark-mode (light-on-dark) steps at all, so
+ *   the whole dark palette below keeps its exact pre-HDS hex values.
+ * - --mobius-color (both themes) has no HDS match in any family — it is the
+ *   möbius centerpiece's accent blue and DoD requires it to look unchanged,
+ *   so it keeps its exact pre-HDS hex, referenced live by
+ *   components/mobius/Mobius.tsx via getComputedStyle.
+ * - app/icon.svg also keeps 2 raw hex values, documented inline there: it's a
+ *   static asset under Next's app/icon.svg convention and cannot read CSS
+ *   custom properties. The DoD grep (`app components`) still flags it; this
+ *   is a second, deliberate exception alongside the möbius numeric colours.
+ */
+
+:root {
+  --semantic-color-surface-page: #eee8df; /* no HDS stone step matches; kept exact */
+  --semantic-color-surface-raised: #e6dfd3; /* no HDS stone step matches; kept exact */
+  --semantic-color-content-primary: #1a1714; /* no HDS stone step matches; kept exact */
+  --semantic-color-content-secondary: #6e665a; /* no HDS stone step matches; kept exact */
+
+  --mobius-color: #3a4fe6; /* no HDS match; centerpiece must look unchanged */
+}
+
+[data-theme='dark'] {
+  --semantic-color-surface-page: #14120f; /* stone has no dark step; kept exact */
+  --semantic-color-surface-raised: #1d1a15; /* ditto */
+  --semantic-color-content-primary: #f1ebe1; /* ditto */
+  --semantic-color-content-secondary: #9b9183; /* ditto */
+
+  --mobius-color: #4f66f5; /* no HDS match; centerpiece must look unchanged */
+}
