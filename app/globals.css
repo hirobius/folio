@@ -54,8 +54,9 @@ svg {
   --line-strong: color-mix(in srgb, var(--text) 28%, transparent);
 
   /* möbius reads these — flips with the theme; --mobius-color has no HDS
-     match and lives in app/folio-overlay.css. */
-  --mobius-bg: var(--bg);
+     match and lives in app/folio-overlay.css. Kept as its own literal (not
+     var(--bg)) so it can never drift if --bg's source changes again. */
+  --mobius-bg: #eee8df;
 
   /* Satoshi everywhere — self-hosted via next/font/local (see app/layout). */
   --font-display: var(--font-satoshi), system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -73,7 +74,7 @@ svg {
   --text: var(--semantic-color-content-primary);
   --text-muted: var(--semantic-color-content-secondary);
 
-  --mobius-bg: var(--bg);
+  --mobius-bg: #14120f;
   /* Dark theme's border was originally a touch stronger (30% vs 28%) than light's. */
   --line-strong: color-mix(in srgb, var(--text) 30%, transparent);
 

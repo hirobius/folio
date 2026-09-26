@@ -7,24 +7,28 @@
  * HDS has no equivalent for, so they stay as folio's original hex values
  * instead of being silently hard-coded again in globals.css.
  *
- * - Light surface/content colours borrow HDS's warm `stone` primitive family
- *   (the same family Concrete Creations' tenant overlay uses) — close to
- *   folio's original cream/near-black, but HDS ships no `stone` step for a
- *   raised surface between stone-100 and stone-400, so --semantic-color-
- *   surface-raised keeps its exact pre-HDS hex.
+ * - HDS's `stone` primitive family looked close to folio's warm cream palette
+ *   but its actual values (checked against dist/variables.css) do not match
+ *   folio's original hex — stone-100/950/700 are a visible re-skin, not an
+ *   alias. Issue #21 requires folio's look to stay unchanged, so light-mode
+ *   surface/content colours below keep their exact pre-HDS hex instead.
  * - HDS's `stone` family has no dark-mode (light-on-dark) steps at all, so
  *   the whole dark palette below keeps its exact pre-HDS hex values.
  * - --mobius-color (both themes) has no HDS match in any family — it is the
  *   möbius centerpiece's accent blue and DoD requires it to look unchanged,
  *   so it keeps its exact pre-HDS hex, referenced live by
  *   components/mobius/Mobius.tsx via getComputedStyle.
+ * - app/icon.svg also keeps 2 raw hex values, documented inline there: it's a
+ *   static asset under Next's app/icon.svg convention and cannot read CSS
+ *   custom properties. The DoD grep (`app components`) still flags it; this
+ *   is a second, deliberate exception alongside the möbius numeric colours.
  */
 
 :root {
-  --semantic-color-surface-page: var(--primitive-color-stone-100); /* was #eee8df */
-  --semantic-color-surface-raised: #e6dfd3; /* no stone step near folio's original raised surface */
-  --semantic-color-content-primary: var(--primitive-color-stone-950); /* was #1a1714 */
-  --semantic-color-content-secondary: var(--primitive-color-stone-700); /* was #6e665a */
+  --semantic-color-surface-page: #eee8df; /* no HDS stone step matches; kept exact */
+  --semantic-color-surface-raised: #e6dfd3; /* no HDS stone step matches; kept exact */
+  --semantic-color-content-primary: #1a1714; /* no HDS stone step matches; kept exact */
+  --semantic-color-content-secondary: #6e665a; /* no HDS stone step matches; kept exact */
 
   --mobius-color: #3a4fe6; /* no HDS match; centerpiece must look unchanged */
 }
