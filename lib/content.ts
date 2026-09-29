@@ -70,6 +70,7 @@ export const projects: Project[] = [
     kind: 'Design System',
     year: '2026 — Present',
     href: 'https://hirobius-design-system.vercel.app',
+    cover: '/hds-storybook.png',
     blurb: `A published, governed component library — ${HDS_COMPONENT_COUNT} components, multi-theme, with DTCG tokens as the single source of truth and Figma sync. CI runs ${a11yEvidence}. Built to be safely extended by AI agents; the first outside field report is public.`,
     highlights: ['10 npm releases, 455 stories, 2 product apps + 4 token-level sites'],
     links: [
