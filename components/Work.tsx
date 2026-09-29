@@ -50,6 +50,15 @@ export function Work() {
                 </span>
               </span>
             </a>
+            {project.links && (
+              <ul className="card__links" aria-label={`${project.title} links`}>
+                {project.links.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ul>
