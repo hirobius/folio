@@ -20,7 +20,7 @@ export const site = {
  * derived from this string (npm run check:claims guards the stale wording).
  */
 export const a11yEvidence =
-  'a WCAG AA contrast gate on 21 core token pairs (light + dark) and zero-warning jsx-a11y lint in CI';
+  'a WCAG AA contrast gate on 21 core token pairs (light + dark) and zero-warning jsx-a11y lint';
 
 /**
  * Public component modules in hds. Hardcoded, not imported across repos: the
@@ -35,7 +35,7 @@ const HDS_COMPONENT_COUNT = 109;
 export const hero = {
   headlineTop: 'I build the design systems',
   headlineBottom: 'teams ship on.',
-  tagline: `DTCG tokens, ${a11yEvidence}, and a library built for AI agents to extend safely.`,
+  tagline: `DTCG tokens, ${a11yEvidence} in CI, and a library built for AI agents to extend safely.`,
   // Grounding line beneath the hero (role · location).
   meta: 'Design Systems Engineer · Spokane, WA',
 };
@@ -68,14 +68,14 @@ export const projects: Project[] = [
   {
     title: 'Hirobius Design System',
     kind: 'Design System',
-    year: '2026',
+    year: '2026 — Present',
     href: 'https://hirobius-design-system.vercel.app',
-    blurb: `A published, governed component library — ${HDS_COMPONENT_COUNT} components, multi-theme, with DTCG tokens as the single source of truth and Figma sync. CI runs ${a11yEvidence}. Built to be safely extended by AI agents; the first outside field report is public at hds#92 / PR #99.`,
+    blurb: `A published, governed component library — ${HDS_COMPONENT_COUNT} components, multi-theme, with DTCG tokens as the single source of truth and Figma sync. CI runs ${a11yEvidence}. Built to be safely extended by AI agents; the first outside field report is public.`,
     highlights: ['10 npm releases, 455 stories, 2 product apps + 4 token-level sites'],
     links: [
-      { label: 'Storybook', href: 'https://hirobius-design-system.vercel.app' },
       { label: 'npm', href: 'https://www.npmjs.com/package/@hirobius/design-system' },
       { label: 'GitHub', href: 'https://github.com/hirobius/hds' },
+      { label: 'Field report (hds#92)', href: 'https://github.com/hirobius/hds/issues/92' },
     ],
   },
   {

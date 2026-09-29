@@ -22,7 +22,7 @@ const satoshi = localFont({
   display: 'swap',
 });
 
-const description = `Adrian Milsap — Design Systems Engineer. I build the design systems teams ship on: DTCG tokens, ${a11yEvidence}, and libraries built for AI agents to extend safely.`;
+const description = `Adrian Milsap — Design Systems Engineer. I build the design systems teams ship on: DTCG tokens, ${a11yEvidence} in CI, and libraries built for AI agents to extend safely.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint && node scripts/check-claims.mjs",
     "typecheck": "tsc --noEmit",
     "check:claims": "node scripts/check-claims.mjs"
   },
