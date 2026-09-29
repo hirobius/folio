@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { site } from '@/lib/content';
+import { a11yEvidence, site } from '@/lib/content';
 import { siteUrl } from '@/lib/site';
 // HDS design tokens (imported once, here) — app/globals.css aliases folio's
 // own custom properties onto these; app/folio-overlay.css documents the few
@@ -22,8 +22,7 @@ const satoshi = localFont({
   display: 'swap',
 });
 
-const description =
-  'Adrian Milsap — Design Systems Engineer. I build the design systems teams ship on: DTCG tokens, accessibility enforced in CI, and libraries built for AI agents to extend safely.';
+const description = `Adrian Milsap — Design Systems Engineer. I build the design systems teams ship on: DTCG tokens, ${a11yEvidence} in CI, and libraries built for AI agents to extend safely.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

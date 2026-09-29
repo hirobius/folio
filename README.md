@@ -35,7 +35,7 @@ npm run typecheck
 ### Editing content
 
 Update `lib/content.ts` — headline, the "journey" intro, and the `projects`
-array (title, blurb, kind, year, href, optional `cover` image in `/public`).
+array (title, blurb, kind, year, href, optional `cover` image in `/public`, optional `links`).
 
 ### Tuning the möbius
 

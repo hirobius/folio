@@ -727,3 +727,22 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+.card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.card__links a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.card__links a:hover {
+  color: var(--text);
+}

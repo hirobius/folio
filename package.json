@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "lint": "next lint && node scripts/check-claims.mjs",
+    "typecheck": "tsc --noEmit",
+    "check:claims": "node scripts/check-claims.mjs"
   },
   "dependencies": {
     "@hirobius/design-system": "^0.16.0",

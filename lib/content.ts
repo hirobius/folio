@@ -14,12 +14,28 @@ export const site = {
 };
 
 /**
+ * What hds CI actually checks for accessibility: the WCAG AA contrast gate on
+ * 21 core token pairs (light + dark) and zero-warning jsx-a11y lint. axe-core
+ * is a Storybook panel, not a CI gate. Keep every a11y claim on this site
+ * derived from this string (npm run check:claims guards the stale wording).
+ */
+export const a11yEvidence =
+  'a WCAG AA contrast gate on 21 core token pairs (light + dark) and zero-warning jsx-a11y lint';
+
+/**
+ * Public component modules in hds. Hardcoded, not imported across repos: the
+ * hds README ("109 public component modules, exported from src/index.ts")
+ * as of 2026-09-29. Bump this when that number changes.
+ */
+const HDS_COMPONENT_COUNT = 109;
+
+/**
  * Hero copy — editorial headline above the möbius, a quiet line beneath.
  */
 export const hero = {
   headlineTop: 'I build the design systems',
   headlineBottom: 'teams ship on.',
-  tagline: 'DTCG tokens, a11y enforced in CI, and a library built for AI agents to extend safely.',
+  tagline: `DTCG tokens, ${a11yEvidence} in CI, and a library built for AI agents to extend safely.`,
   // Grounding line beneath the hero (role · location).
   meta: 'Design Systems Engineer · Spokane, WA',
 };
@@ -44,29 +60,29 @@ export type Project = {
   highlights?: string[];
   /** optional cover image in /public; falls back to a tinted panel */
   cover?: string;
+  /** optional extra links, rendered under the card (kept outside the card anchor) */
+  links?: { label: string; href: string }[];
 };
 
 export const projects: Project[] = [
   {
     title: 'Hirobius Design System',
     kind: 'Design System',
-    year: '2025 — Present',
-    href: 'https://github.com/hirobius/hirobius-design-system',
-    blurb:
-      'A published, governed component library — 88 components, multi-theme, with DTCG tokens as the single source of truth and Figma sync. Accessibility runs in CI, and the library is built to be safely extended by AI agents.',
-  },
-  {
-    title: 'Job Hunt Jade',
-    kind: 'Product · Design System',
-    year: '2025',
-    href: 'https://job-hunt-jade.vercel.app/',
-    blurb:
-      'A focused job-search workspace — an application board for tracking roles end to end, built on its own small design system, with written case studies on the product and the system.',
+    year: '2026 — Present',
+    href: 'https://hirobius-design-system.vercel.app',
+    cover: '/hds-storybook.png',
+    blurb: `A published, governed component library — ${HDS_COMPONENT_COUNT} components, multi-theme, with DTCG tokens as the single source of truth and Figma sync. CI runs ${a11yEvidence}. Built to be safely extended by AI agents; the first outside field report is public.`,
+    highlights: ['10 npm releases, 455 stories, 2 product apps + 4 token-level sites'],
+    links: [
+      { label: 'npm', href: 'https://www.npmjs.com/package/@hirobius/design-system' },
+      { label: 'GitHub', href: 'https://github.com/hirobius/hds' },
+      { label: 'Field report (hds#92)', href: 'https://github.com/hirobius/hds/issues/92' },
+    ],
   },
   {
     title: 'Veteran Resource Navigator',
     kind: 'Product · Accessibility',
-    year: '2025',
+    year: '2026',
     href: 'https://veteran-resource-navigator.vercel.app/',
     blurb:
       'An accessible navigator that helps veterans find and reach the benefits and resources they qualify for.',
@@ -94,8 +110,7 @@ export const stack = [
   'Figma',
   'Storybook',
   'Vitest',
-  'Playwright',
-  'axe-core / CI',
+  'axe-core (Storybook panel)',
   'Vercel',
   'GitHub Actions',
   'LLMs (Claude, GPT, Gemini)',
@@ -114,6 +129,6 @@ export const contact = {
   links: [
     { label: 'Email', href: 'mailto:adrian.milsap@gmail.com' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/adrianmilsap' },
-    { label: 'GitHub', href: 'https://github.com/hirobius' },
+    { label: 'GitHub', href: 'https://github.com/adr-eng' },
   ],
 };
