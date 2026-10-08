@@ -1,0 +1,7 @@
+{
+  "updatedAt": "2026-10-08",
+  "phase": "live",
+  "headline": "Anti-slop Oxlint rules vendored as a warn-first ratchet (95 baseline warnings, new hits fail lint).",
+  "next": "Burn the baseline down per rule; run `node scripts/check-anti-slop.mjs --update` after each cleanup to lock it in.",
+  "blocked": null
+}

@@ -1,0 +1,39 @@
+{
+  "anti-slop(no-chained-type-assertions)": {
+    "components/mobius/Mobius.tsx": 1
+  },
+  "anti-slop(no-known-value-widening)": {
+    "lib/content.ts": 1
+  },
+  "anti-slop(no-runtime-typeof)": {
+    "components/mobius/capability.ts": 1
+  },
+  "anti-slop(no-unknown-parameters)": {
+    "components/mobius/MobiusErrorBoundary.tsx": 1,
+    "components/mobius/useAdaptiveTransmission.ts": 1
+  },
+  "anti-slop(require-readable-spacing)": {
+    "app/opengraph-image.tsx": 3,
+    "app/twitter-image.tsx": 3,
+    "components/RotatingRole.tsx": 3,
+    "components/mobius/Mobius.tsx": 7,
+    "components/mobius/MobiusFallback.tsx": 1,
+    "components/mobius/MobiusScene.tsx": 15,
+    "components/mobius/capability.ts": 12,
+    "components/mobius/useAdaptiveTransmission.ts": 9,
+    "components/mobius/useAnchorFit.ts": 7,
+    "components/mobius/useDemandRenderLoop.ts": 4,
+    "components/mobius/useMobiusMaterial.ts": 6,
+    "components/mobius/useMobiusMaterialLite.ts": 3,
+    "components/motion/Reveal.tsx": 1,
+    "lib/og-image.tsx": 1,
+    "scripts/check-claims.mjs": 5
+  },
+  "anti-slop(require-safety-comment-for-type-assertion)": {
+    "components/mobius/Mobius.tsx": 2,
+    "components/mobius/capability.ts": 4,
+    "components/mobius/useAdaptiveTransmission.ts": 1,
+    "components/mobius/useAnchorFit.ts": 1,
+    "components/motion/Reveal.tsx": 2
+  }
+}

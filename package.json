@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint && node scripts/check-claims.mjs",
+    "lint": "next lint && node scripts/check-claims.mjs && node scripts/check-anti-slop.mjs",
     "typecheck": "tsc --noEmit",
-    "check:claims": "node scripts/check-claims.mjs"
+    "check:claims": "node scripts/check-claims.mjs",
+    "lint:slop": "oxlint -c .oxlintrc.json app components lib scripts",
+    "check:slop": "node scripts/check-anti-slop.mjs",
+    "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
     "@hirobius/design-system": "^0.16.0",
@@ -25,12 +28,14 @@
     "zustand": "4.5.5"
   },
   "devDependencies": {
+    "@oxlint/plugins": "1.87.0",
     "@types/node": "20.16.11",
     "@types/react": "18.3.11",
     "@types/react-dom": "18.3.1",
     "@types/three": "0.169.0",
     "eslint": "8.57.1",
     "eslint-config-next": "14.2.35",
+    "oxlint": "1.87.0",
     "typescript": "5.6.3"
   }
 }
