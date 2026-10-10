@@ -3,7 +3,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-# This repo: npm scripts, no test suite. Production site, so include the build.
-GATE="npm run typecheck && npm run lint && npm run build"
+# This repo: npm scripts, node:test suite in tests/. Production site, so include the build.
+# The lint step also runs the anti-slop ratchet (scripts/check-anti-slop.mjs).
+GATE="npm run typecheck && npm run lint && npm test && npm run build"
 
 eval "$GATE"
